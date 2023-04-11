@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CrGrFms</class>
+ <widget class="QDialog" name="CrGrFms">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>515</width>
+    <height>187</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>515</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Create questionnaires for a group</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>150</y>
+     <width>341</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbGroup">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Group selection</string>
+   </property>
+   <property name="text">
+    <string>Group</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbGroup">
+   <property name="geometry">
+    <rect>
+     <x>82</x>
+     <y>8</y>
+     <width>390</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Group Selection</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbForm">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>70</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Choosing a questionnaire</string>
+   </property>
+   <property name="text">
+    <string>Questionnaire</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbForm">
+   <property name="geometry">
+    <rect>
+     <x>82</x>
+     <y>38</y>
+     <width>390</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Choosing a questionnaire</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbFolder">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Folder for uploading paper questionnaires</string>
+   </property>
+   <property name="text">
+    <string>Folder</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leFolder">
+   <property name="geometry">
+    <rect>
+     <x>82</x>
+     <y>127</y>
+     <width>390</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Folder for uploading paper questionnaires</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="tbSelectFolder">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>126</y>
+     <width>25</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbDate">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Choosing the questionnaire date</string>
+   </property>
+   <property name="text">
+    <string>Date</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="deDate">
+   <property name="geometry">
+    <rect>
+     <x>82</x>
+     <y>70</y>
+     <width>110</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Choosing the questionnaire date</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbNote">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Note</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leNote">
+   <property name="geometry">
+    <rect>
+     <x>82</x>
+     <y>100</y>
+     <width>390</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>cbGroup</tabstop>
+  <tabstop>cbForm</tabstop>
+  <tabstop>deDate</tabstop>
+  <tabstop>leNote</tabstop>
+  <tabstop>leFolder</tabstop>
+  <tabstop>tbSelectFolder</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>CrGrFms</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>CrGrFms</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

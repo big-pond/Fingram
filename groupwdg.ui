@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GroupWdg</class>
+ <widget class="QWidget" name="GroupWdg">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>977</width>
+    <height>524</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Groups</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>2</number>
+   </property>
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <item>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QFrame" name="frame">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>800</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>2</number>
+       </property>
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="widget_3" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>58</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>58</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>4</y>
+            <width>50</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#00007f;&quot;&gt;Groups&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QToolButton" name="tbAddGroup">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>30</y>
+            <width>36</width>
+            <height>36</height>
+           </rect>
+          </property>
+          <property name="toolTip">
+           <string>Add a group</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="fingram.qrc">
+            <normaloff>:/resources/add.svg</normaloff>:/resources/add.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="QToolButton" name="tbDelGroup">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>70</y>
+            <width>36</width>
+            <height>36</height>
+           </rect>
+          </property>
+          <property name="toolTip">
+           <string>Delete a group</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="fingram.qrc">
+            <normaloff>:/resources/delete.svg</normaloff>:/resources/delete.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="QToolButton" name="tbEditGroup">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>110</y>
+            <width>36</width>
+            <height>36</height>
+           </rect>
+          </property>
+          <property name="toolTip">
+           <string>Edit group</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="fingram.qrc">
+            <normaloff>:/resources/edit.svg</normaloff>:/resources/edit.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="tvGroup"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>2</number>
+       </property>
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>58</width>
+           <height>52</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>58</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <widget class="QToolButton" name="tbEditChild">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>110</y>
+            <width>36</width>
+            <height>36</height>
+           </rect>
+          </property>
+          <property name="toolTip">
+           <string>Edit data about the child</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="fingram.qrc">
+            <normaloff>:/resources/edit.svg</normaloff>:/resources/edit.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>4</y>
+            <width>55</width>
+            <height>13</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#00007f;&quot;&gt;Children&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QToolButton" name="tbAddChild">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>30</y>
+            <width>36</width>
+            <height>36</height>
+           </rect>
+          </property>
+          <property name="toolTip">
+           <string>Add data about the child</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="fingram.qrc">
+            <normaloff>:/resources/add.svg</normaloff>:/resources/add.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="QToolButton" name="tbDelChild">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>70</y>
+            <width>36</width>
+            <height>36</height>
+           </rect>
+          </property>
+          <property name="toolTip">
+           <string>Delete data about the child</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="fingram.qrc">
+            <normaloff>:/resources/delete.svg</normaloff>:/resources/delete.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="tvChild"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>tvGroup</tabstop>
+  <tabstop>tvChild</tabstop>
+  <tabstop>tbAddGroup</tabstop>
+  <tabstop>tbDelGroup</tabstop>
+  <tabstop>tbEditGroup</tabstop>
+  <tabstop>tbAddChild</tabstop>
+  <tabstop>tbDelChild</tabstop>
+  <tabstop>tbEditChild</tabstop>
+ </tabstops>
+ <resources>
+  <include location="fingram.qrc"/>
+ </resources>
+ <connections/>
+</ui>
