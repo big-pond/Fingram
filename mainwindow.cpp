@@ -288,16 +288,18 @@ void MainWindow::about()
     QDateTime dt = fi.lastModified();
     QMessageBox::about(this, tr("About"),
         tr("<table><tr><td><img src=\":/resources/finlit64.png\"></td><td><h1 align=\"center\">%1</h1></td></tr></table>"
-           "<p align=\"center\">Версия %2</p>"
-           "<p align=\"center\">Сборка: %3</p>"
+           "<p align=\"center\">Version %2</p>"
+           "<p align=\"center\">Build: %3</p>"
            "<p align=\"center\">Copyright &copy; %4 %5</p>"
-           "<p align=\"center\">Сайт программы  <a href=\"http://www.????.ru\">http://www.????.ru</a></p>"
-           "<p align=\"justify\">Эта программа является свободным программным обеспечением. "
-           "Вы можете распространять ее и/или модифицировать соблюдая условия "
-           "Открытого Лицензионного Соглашения (GNU General Public License) версии 2, "
-           "опубликованного Free Software Foundation, или (на ваш выбор) любой последующей версии."
-           "<br>Для разработки программы использовались IDE Qt Creator с компилятором <a href=\"https://osdn.net/projects/mingw/\">MinGW С++</a> и "
-           "библиотека Qt 6  <a href=\"https://www.qt.io/\">https://qt.io</a>;"
+           "<p align=\"center\"><a href=\"https://github.com/big-pond/Fingram\">https://github.com/big-pond/Fingram</a></p>"
+           "<p align=\"justify\">Fingram program is free software. You may redistribute it and/or modify "
+           "it under the terms of the GNU General Public License version 3 published by the "
+           "Free Software Foundation, or (at your option) any subsequent version.<br> "
+           "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; "
+           "without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+           "See the <a href=\"https://www.gnu.org/licenses/\">GNU General Public License</a> for details.<br>"
+           "The <a href=\"https://www.qt.io/\">Qt 5.10.0 framework, Qt Creator IDE 4.5.0 and the compiler MinGW С++</a> "
+           "was used to develop this program."
            )
            .arg(QApplication::applicationName())
            .arg(QApplication::applicationVersion())
