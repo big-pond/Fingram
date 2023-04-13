@@ -3,6 +3,7 @@
 
 #include <QStandardItemModel>
 
+#include "def.h"
 #include "database.h"
 
 const int TestProcWdg::COL_COUNT = 6;
@@ -34,4 +35,7 @@ void TestProcWdg::processingTest()
 {
     double average_score = db->processingTest(testing_id, model);
     ui->lbAverageScore->setText(QString::number(average_score, 'f', 2));
+    int form_id = db->getFormIdFromTesting(testing_id);
+    int point_max = db->getMaxPointQuestionnaire(form_id);
+    ui->lbGroupLevel->setText(Def::level(point_max, average_score));
 }

@@ -63,6 +63,8 @@ public:
     void getAnswers(int id, QStandardItemModel* model);
     void setAnswers(int form_id, QSqlRecord* question_record, const QByteArray& imgdata, QStandardItemModel* model);
 
+    int getFormIdFromTesting(int id);
+    int getMaxPointQuestionnaire(int form_id);//Максимально возможное количество баллов по анкете
     double processingTest(int testing_id, QStandardItemModel* model);
 
 

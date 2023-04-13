@@ -22,6 +22,7 @@ public:
     static QStringList language_list;
     static QString languageName(int i);
     static QString languageSuffix(int i);
+    static QString level(const double& point_max, const double& point_sum);
     static int languageCount();
 };
 

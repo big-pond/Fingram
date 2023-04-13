@@ -122,6 +122,10 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="fingram.qrc">
+     <normaloff>:/resources/finlit.png</normaloff>:/resources/finlit.png</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>

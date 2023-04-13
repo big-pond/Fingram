@@ -551,6 +551,32 @@ void Database::createFormsForGroup(const QString &filename, int form_id, int gro
     progress.setValue(progress.maximum());
 }
 
+int Database::getFormIdFromTesting(int id)
+{
+    QSqlQuery query(db);
+    query.prepare("SELECT form_id FROM testing WHERE(id = ?)");
+    query.bindValue(0, id);
+    query.exec();
+    int form_id = 0;
+    if(query.next())
+        form_id = query.value("form_id").toInt();
+    return form_id;
+}
+
+int Database::getMaxPointQuestionnaire(int form_id)    //Максимально возможное количество баллов по анкете
+{
+    int point_max = 0;
+    QSqlQuery query(db);
+    query.prepare("SELECT sum(answers.correct) FROM answers, questions WHERE answers.question_id = questions.id AND questions.form_id = ?");
+    query.bindValue(0, form_id);
+    query.exec();
+    if(query.next())
+    {
+        point_max = query.value(0).toInt();
+    }
+    return point_max;
+}
+
 double Database::processingTest(int testing_id, QStandardItemModel *model)
 {
     QSqlQuery query(db);
@@ -567,18 +593,19 @@ double Database::processingTest(int testing_id, QStandardItemModel *model)
     if (group_id==0 || form_id==0)
         return 0;
 
-    //Максимально возможное количество баллов по анкете
-    int point_max = 0;
-    query.prepare("SELECT sum(answers.correct) FROM answers, questions WHERE answers.question_id = questions.id AND questions.form_id = ?");
-    query.bindValue(0, form_id);
-    query.exec();
-    if(query.next())
-    {
-        point_max = query.value(0).toInt();
-    }
+    int point_max = getMaxPointQuestionnaire(form_id);//Максимально возможное количество баллов по анкете
+//    //Максимально возможное количество баллов по анкете
+//    int point_max = 0;
+//    query.prepare("SELECT sum(answers.correct) FROM answers, questions WHERE answers.question_id = questions.id AND questions.form_id = ?");
+//    query.bindValue(0, form_id);
+//    query.exec();
+//    if(query.next())
+//    {
+//        point_max = query.value(0).toInt();
+//    }
     qDebug() << "point_max" << point_max;
-    double lo_mi = 0.333333;
-    double mi_hi = 0.666667;//низкий средний высокий
+//    double lo_mi = 0.333333;
+//    double mi_hi = 0.666667;//низкий средний высокий
 
     QSqlQuery quChild(db);
     quChild.prepare("SELECT id, surname, name, db, note FROM childs WHERE group_id = ?");
@@ -616,13 +643,14 @@ double Database::processingTest(int testing_id, QStandardItemModel *model)
         }
         model->setData(model->index(row, 4), point_sum); //количество баллов
         group_point_sum += point_sum;
-        QString level = tr("low");
-        double ratio = (double)(point_sum)/point_max;
+        QString level = Def::level(point_max, point_sum);
+//        QString level = tr("low");
+//        double ratio = (double)(point_sum)/point_max;
 
-        if (ratio>mi_hi)
-            level = tr("high");
-        else if ((ratio>=lo_mi)&&(ratio<=mi_hi))
-            level = tr("middle");
+//        if (ratio>mi_hi)
+//            level = tr("high");
+//        else if ((ratio>=lo_mi)&&(ratio<=mi_hi))
+//            level = tr("middle");
         model->setData(model->index(row, 5), level); //уровень
     }
     int childCount = getChildCount(group_id);
