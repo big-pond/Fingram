@@ -107,7 +107,7 @@
          </property>
          <property name="icon">
           <iconset resource="fingram.qrc">
-           <normaloff>:/resources/delete.svg</normaloff>:/resources/delete.svg</iconset>
+           <normaloff>:/resources/delete.png</normaloff>:/resources/delete.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -187,7 +187,7 @@ font-weight: bold;</string>
       </property>
       <property name="icon">
        <iconset resource="fingram.qrc">
-        <normaloff>:/resources/add.svg</normaloff>:/resources/add.svg</iconset>
+        <normaloff>:/resources/add.png</normaloff>:/resources/add.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -213,7 +213,7 @@ font-weight: bold;</string>
       </property>
       <property name="icon">
        <iconset resource="fingram.qrc">
-        <normaloff>:/resources/delete.svg</normaloff>:/resources/delete.svg</iconset>
+        <normaloff>:/resources/delete.png</normaloff>:/resources/delete.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -239,7 +239,7 @@ font-weight: bold;</string>
       </property>
       <property name="icon">
        <iconset resource="fingram.qrc">
-        <normaloff>:/resources/sort.svg</normaloff>:/resources/sort.svg</iconset>
+        <normaloff>:/resources/sort.png</normaloff>:/resources/sort.png</iconset>
       </property>
       <property name="iconSize">
        <size>

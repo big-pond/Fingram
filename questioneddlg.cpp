@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QSettings>
 
 #include "def.h"
 #include "database.h"
@@ -27,7 +28,6 @@ QuestionEdDlg::QuestionEdDlg(int form_id, const QSqlRecord &record, Database *db
         QPixmap pixmap = QPixmap();
         pixmap.loadFromData(imagedata );
         ui->lbImage->setPixmap(pixmap.scaled(ui->lbImage->size(), Qt::KeepAspectRatio));
-//        ui->lbImage->setPixmap(pixmap);
     }
     else
     {
@@ -49,14 +49,16 @@ QuestionEdDlg::QuestionEdDlg(int form_id, const QSqlRecord &record, Database *db
     model->setHorizontalHeaderItem(4, new QStandardItem(tr("Сorrect\nanswer")));
     ui->tableView->setColumnHidden(0, true);
     ui->tableView->setColumnHidden(1, true);
-//    ui->tableView->setColumnHidden(3, true);
-    ui->tableView->setColumnWidth(2, 200);
-    ui->tableView->setColumnWidth(4, 60);
+    ui->tableView->setColumnHidden(3, true);
+    ui->tableView->setColumnWidth(2, 240);
+    ui->tableView->setColumnWidth(4, 80);
     db->getAnswers(question_id, model);
+    readSettings();
 }
 
 QuestionEdDlg::~QuestionEdDlg()
 {
+    writeSettings();
     delete ui;
 }
 
@@ -153,3 +155,30 @@ QList<QStandardItem*> *QuestionEdDlg::createStandartItemRow(int col_count)
         items->append(new QStandardItem());
     return items;
 }
+
+void QuestionEdDlg::writeSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("QuestionEdDlg");
+    settings.setValue("geometry", saveGeometry());
+    int col_width = ui->tableView->columnWidth(2);
+    if(col_width==0)
+        col_width = 240;
+    settings.setValue("answer_col", col_width);
+    col_width = ui->tableView->columnWidth(4);
+    if(col_width==0)
+        col_width = 80;
+    settings.setValue("correct_col", col_width);
+    settings.endGroup();
+}
+
+void QuestionEdDlg::readSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("QuestionEdDlg");
+    restoreGeometry(settings.value("geometry", geometry()).toByteArray());
+    ui->tableView->setColumnWidth(2, settings.value("answer_col", 240).toInt());
+    ui->tableView->setColumnWidth(4, settings.value("correct_col", 80).toInt());
+    settings.endGroup();
+}
+

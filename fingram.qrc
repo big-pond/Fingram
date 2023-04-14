@@ -6,14 +6,17 @@
         <file>resources/qt.png</file>
         <file>resources/toleft.png</file>
         <file>resources/toright.png</file>
-        <file>resources/add.svg</file>
-        <file>resources/width.svg</file>
-        <file>resources/delete.svg</file>
-        <file>resources/edit.svg</file>
-        <file>resources/exit.svg</file>
-        <file>resources/settings.svg</file>
-        <file>resources/help.svg</file>
-        <file>resources/calculate.svg</file>
-        <file>resources/sort.svg</file>
+        <file>resources/add.png</file>
+        <file>resources/calculate.png</file>
+        <file>resources/colwidth.png</file>
+        <file>resources/delete.png</file>
+        <file>resources/edit.png</file>
+        <file>resources/editform.png</file>
+        <file>resources/editgroup.png</file>
+        <file>resources/exit.png</file>
+        <file>resources/help.png</file>
+        <file>resources/settings.png</file>
+        <file>resources/sort.png</file>
+        <file>resources/edittesting.png</file>
     </qresource>
 </RCC>

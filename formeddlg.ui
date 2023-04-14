@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>732</width>
+    <width>700</width>
     <height>464</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Questionnaire editing</string>
@@ -55,7 +61,7 @@ background : rgb(210,210,255);</string>
        <rect>
         <x>30</x>
         <y>10</y>
-        <width>601</width>
+        <width>651</width>
         <height>71</height>
        </rect>
       </property>
@@ -244,7 +250,7 @@ background : rgb(210,210,255);</string>
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/delete.svg</normaloff>:/resources/delete.svg</iconset>
+            <normaloff>:/resources/delete.png</normaloff>:/resources/delete.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -270,7 +276,7 @@ background : rgb(210,210,255);</string>
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/edit.svg</normaloff>:/resources/edit.svg</iconset>
+            <normaloff>:/resources/edit.png</normaloff>:/resources/edit.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -296,7 +302,7 @@ background : rgb(210,210,255);</string>
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/add.svg</normaloff>:/resources/add.svg</iconset>
+            <normaloff>:/resources/add.png</normaloff>:/resources/add.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -343,14 +349,14 @@ background : rgb(210,210,255);</string>
            </rect>
           </property>
           <property name="toolTip">
-           <string>Default column width</string>
+           <string>Default &quot;Question&quot; table column width</string>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/width.svg</normaloff>:/resources/width.svg</iconset>
+            <normaloff>:/resources/colwidth.png</normaloff>:/resources/colwidth.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -420,19 +426,19 @@ background : rgb(210,210,255);</string>
            <rect>
             <x>5</x>
             <y>18</y>
-            <width>80</width>
+            <width>100</width>
             <height>20</height>
            </rect>
           </property>
           <property name="minimumSize">
            <size>
-            <width>80</width>
+            <width>100</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>80</width>
+            <width>16777215</width>
             <height>16777215</height>
            </size>
           </property>
@@ -453,14 +459,14 @@ background : rgb(210,210,255);</string>
            </rect>
           </property>
           <property name="toolTip">
-           <string>Default column width</string>
+           <string>Default &quot;Answer&quot; table column width</string>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/width.svg</normaloff>:/resources/width.svg</iconset>
+            <normaloff>:/resources/colwidth.png</normaloff>:/resources/colwidth.png</iconset>
           </property>
           <property name="iconSize">
            <size>

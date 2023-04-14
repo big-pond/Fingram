@@ -13,14 +13,16 @@
 
 #include <QDebug>
 
+//const QList<int> GroupWdg::default_chcolwidths = QList<int>() << 0 << 0 << 160 << 160 <<80 << 250;
+
 GroupWdg::GroupWdg(Database *db, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::GroupWdg)
+    QWidget(parent), ui(new Ui::GroupWdg)
 {
     ui->setupUi(this);
     this->db = db;
+//    chcolwidths << default_chcolwidths;
     initGroupPanel();
-    inidChildPanel();
+    initChildPanel();
     connect(ui->tbAddGroup, SIGNAL(clicked()), this, SLOT(addGroup()));
     connect(ui->tbDelGroup, SIGNAL(clicked()), this, SLOT(deleteGroup()));
     connect(ui->tbEditGroup, SIGNAL(clicked()), this, SLOT(editGroup()));
@@ -47,6 +49,7 @@ void GroupWdg::updateChildView()
         childModel->setFilter("group_id = -1");
     }
     childModel->select();
+    ui->tvChild->resizeColumnsToContents();
 }
 
 void GroupWdg::addGroup()
@@ -218,14 +221,13 @@ void GroupWdg::initGroupPanel()
     connect(ui->tvGroup->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &,const QModelIndex &)), this, SLOT(updateChildView()));
 }
 
-void GroupWdg::inidChildPanel()
+void GroupWdg::initChildPanel()
 {
     childModel = new QSqlTableModel(this, db->database());
     childModel->setTable(Child::TABLE);
-//    childModel->setRelation(Child::GroupId, QSqlRelation("groups", "id", "name"));
     childModel->setSort(Child::Surname, Qt::AscendingOrder);
     childModel->setHeaderData(Child::Surname, Qt::Horizontal, tr("Surname"));
-    childModel->setHeaderData(Child::Name, Qt::Horizontal, tr("Name"));
+    childModel->setHeaderData(Child::Name, Qt::Horizontal, tr("Name "));
     childModel->setHeaderData(Child::DateBirth, Qt::Horizontal, tr("Date birth"));
     childModel->setHeaderData(Child::Note, Qt::Horizontal, tr("Note"));
 
@@ -233,9 +235,10 @@ void GroupWdg::inidChildPanel()
     ui->tvChild->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tvChild->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tvChild->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tvChild->horizontalHeader()->setStretchLastSection(true);
     ui->tvChild->setColumnHidden(Child::Id, true);
     ui->tvChild->setColumnHidden(Child::GroupId, true);
+    ui->tvChild->resizeColumnsToContents();
+    ui->tvChild->horizontalHeader()->setStretchLastSection(true);
 }
 
 void GroupWdg::writeSettings()

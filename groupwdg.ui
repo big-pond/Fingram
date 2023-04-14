@@ -113,7 +113,7 @@
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/add.svg</normaloff>:/resources/add.svg</iconset>
+            <normaloff>:/resources/add.png</normaloff>:/resources/add.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -139,7 +139,7 @@
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/delete.svg</normaloff>:/resources/delete.svg</iconset>
+            <normaloff>:/resources/delete.png</normaloff>:/resources/delete.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -165,7 +165,7 @@
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/edit.svg</normaloff>:/resources/edit.svg</iconset>
+            <normaloff>:/resources/edit.png</normaloff>:/resources/edit.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -229,7 +229,7 @@
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/edit.svg</normaloff>:/resources/edit.svg</iconset>
+            <normaloff>:/resources/edit.png</normaloff>:/resources/edit.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -268,7 +268,7 @@
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/add.svg</normaloff>:/resources/add.svg</iconset>
+            <normaloff>:/resources/add.png</normaloff>:/resources/add.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -294,7 +294,7 @@
           </property>
           <property name="icon">
            <iconset resource="fingram.qrc">
-            <normaloff>:/resources/delete.svg</normaloff>:/resources/delete.svg</iconset>
+            <normaloff>:/resources/delete.png</normaloff>:/resources/delete.png</iconset>
           </property>
           <property name="iconSize">
            <size>

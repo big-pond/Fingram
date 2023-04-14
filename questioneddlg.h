@@ -38,6 +38,8 @@ private:
     QByteArray imagedata;
     QStandardItemModel* model;
     QList<QStandardItem*>* createStandartItemRow(int col_count);
+    void writeSettings();
+    void readSettings();
 };
 
 #endif // QUESTIONEDDLG_H

@@ -10,14 +10,14 @@ class QStandardItem;
 
 struct Group {
 public:
-    enum {Id=0, Name=1, Note=2};
+    enum {Id, Name, Note};
 
     static const QString TABLE;
 };
 
 struct Child {
 public:
-    enum {Id=0, GroupId=1, Surname=2, Name=3, DateBirth=4, Note=5};
+    enum {Id, GroupId, Surname, Name, DateBirth, Note};
     static const QString TABLE;
     static const QString FOREIGN_TABLE1;
     static const QString FOREIGN_KEY1;
@@ -26,7 +26,7 @@ public:
 
 struct Form {
 public:
-    enum {Id=0, Name=1, Note=2};
+    enum {Id, Name, Note};
     static const QString TABLE;
 };
 

@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QSqlQueryModel>
 #include <QSqlRecord>
+#include <QDesktopServices>
 
 #include "def.h"
 #include "database.h"
@@ -45,6 +46,15 @@ MainWindow::MainWindow(QWidget *parent) :
     action->setCheckable(true);
     action->setChecked(true);
     ui->menuView->addAction(action);
+
+    ui->mainToolBar->addAction(ui->actionEditForms);
+    ui->mainToolBar->addAction(ui->actionEditGroups);
+    ui->mainToolBar->addSeparator();
+    ui->mainToolBar->addAction(ui->actionInputTestData);
+    ui->mainToolBar->addAction(ui->actionProcessing);
+    ui->mainToolBar->addSeparator();
+    ui->mainToolBar->addAction(ui->actionHelp);
+
     connect(action, SIGNAL(triggered(bool)), ui->statusBar, SLOT(setVisible(bool)));
 
     connect(ui->actionSettings, SIGNAL(triggered()), SLOT(settings()));
@@ -315,10 +325,6 @@ void MainWindow::aboutQt()
 
 void MainWindow::help()
 {
-
-    //Из Бланшет,Саммерфилд
-    //QUrl url(directoryOf("doc").absoluteFilePath("index.html"));
-    //url.setScheme("file");
-    //QDesktopServices::openUrl(url);
+    QDesktopServices::openUrl(QUrl::fromLocalFile("./help/index.html"));
 }
 

@@ -97,7 +97,7 @@
   <action name="actionSettings">
    <property name="icon">
     <iconset resource="fingram.qrc">
-     <normaloff>:/resources/settings.svg</normaloff>:/resources/settings.svg</iconset>
+     <normaloff>:/resources/settings.png</normaloff>:/resources/settings.png</iconset>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -106,7 +106,7 @@
   <action name="actionQuit">
    <property name="icon">
     <iconset resource="fingram.qrc">
-     <normaloff>:/resources/exit.svg</normaloff>:/resources/exit.svg</iconset>
+     <normaloff>:/resources/exit.png</normaloff>:/resources/exit.png</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -115,7 +115,7 @@
   <action name="actionHelp">
    <property name="icon">
     <iconset resource="fingram.qrc">
-     <normaloff>:/resources/help.svg</normaloff>:/resources/help.svg</iconset>
+     <normaloff>:/resources/help.png</normaloff>:/resources/help.png</iconset>
    </property>
    <property name="text">
     <string>Help</string>
@@ -142,10 +142,13 @@
   <action name="actionEditForms">
    <property name="icon">
     <iconset resource="fingram.qrc">
-     <normaloff>:/resources/edit.svg</normaloff>:/resources/edit.svg</iconset>
+     <normaloff>:/resources/editform.png</normaloff>:/resources/editform.png</iconset>
    </property>
    <property name="text">
     <string>Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit questionnaires</string>
    </property>
   </action>
   <action name="actionLoadFormFromFile">
@@ -159,10 +162,13 @@
   <action name="actionEditGroups">
    <property name="icon">
     <iconset resource="fingram.qrc">
-     <normaloff>:/resources/edit.svg</normaloff>:/resources/edit.svg</iconset>
+     <normaloff>:/resources/editgroup.png</normaloff>:/resources/editgroup.png</iconset>
    </property>
    <property name="text">
     <string>Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit groups</string>
    </property>
   </action>
   <action name="actionLoadGroupFromFile">
@@ -171,6 +177,10 @@
    </property>
   </action>
   <action name="actionInputTestData">
+   <property name="icon">
+    <iconset resource="fingram.qrc">
+     <normaloff>:/resources/edittesting.png</normaloff>:/resources/edittesting.png</iconset>
+   </property>
    <property name="text">
     <string>Entering test data</string>
    </property>
@@ -183,7 +193,7 @@
   <action name="actionProcessing">
    <property name="icon">
     <iconset resource="fingram.qrc">
-     <normaloff>:/resources/calculate.svg</normaloff>:/resources/calculate.svg</iconset>
+     <normaloff>:/resources/calculate.png</normaloff>:/resources/calculate.png</iconset>
    </property>
    <property name="text">
     <string>Test result processing</string>

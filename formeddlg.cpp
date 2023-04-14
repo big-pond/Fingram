@@ -13,7 +13,7 @@
 
 #include <QDebug>
 
-const QList<int> FormEdDlg::default_questcolwidthlst = QList<int>() << 50 << 300;
+const QList<int> FormEdDlg::default_questcolwidthlst = QList<int>() << 0 << 620;
 const QList<int> FormEdDlg::default_answcolwidthlst = QList<int>() << 0 << 0 << 350 << 0 << 80;
 
 FormEdDlg::FormEdDlg(const QSqlRecord& record, Database *db, QWidget *parent) :
@@ -42,6 +42,7 @@ FormEdDlg::FormEdDlg(const QSqlRecord& record, Database *db, QWidget *parent) :
 
     for(int i=0; i<default_questcolwidthlst.count(); i++)
          ui->tvQuestion->setColumnWidth(i, default_questcolwidthlst[i]);
+    ui->tvQuestion->setCurrentIndex(questModel->index(0,1));
     readSettings();
 }
 
@@ -135,7 +136,7 @@ void FormEdDlg::delQuestion()
 void FormEdDlg::defaultQuestionColWidth()
 {
     for(int i=0; i<default_questcolwidthlst.count(); i++)
-        ui->tvAnswer->setColumnWidth(i, default_questcolwidthlst[i]);
+        ui->tvQuestion->setColumnWidth(i, default_questcolwidthlst[i]);
 }
 
 void FormEdDlg::defaultAnswerColWidth()
@@ -161,7 +162,9 @@ void FormEdDlg::updateAnswerModel(int question_id)
     answrModel->setHeaderData(2, Qt::Horizontal, tr("Content"));
     answrModel->setHeaderData(3, Qt::Horizontal, tr("Correct"));
     for(int i=0; i<answrModel->columnCount(); i++)
+    {
         ui->tvAnswer->setColumnWidth(i, answcolwidthlst[i]);
+    }
     QByteArray byte_array = db->getQuestionImage(question_id);
     if (!byte_array.isEmpty())
     {
@@ -184,6 +187,9 @@ void FormEdDlg::writeSettings()
     for(int i=0; i<ui->tvQuestion->model()->columnCount(); i++)
     {
         settings.setArrayIndex(i);
+        int col_width = ui->tvQuestion->columnWidth(i);
+        if(i==1 && col_width==0)
+            col_width = default_questcolwidthlst[i];
         settings.setValue("width", ui->tvQuestion->columnWidth(i));
     }
     settings.endArray();
@@ -191,7 +197,10 @@ void FormEdDlg::writeSettings()
     for(int i=0; i<ui->tvAnswer->model()->columnCount(); i++)
     {
         settings.setArrayIndex(i);
-        settings.setValue("width", ui->tvAnswer->columnWidth(i));
+        int col_width = ui->tvAnswer->columnWidth(i);
+        if((i==2 || i==4) && col_width==0)
+            col_width = default_answcolwidthlst[i];
+        settings.setValue("width", col_width);
     }
     settings.endArray();
     settings.endGroup();

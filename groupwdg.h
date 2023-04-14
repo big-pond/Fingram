@@ -15,6 +15,7 @@ class GroupWdg : public QWidget
     Q_OBJECT
 
 public:
+//    static const QList<int> default_chcolwidths;
     explicit GroupWdg(Database* db, QWidget *parent = 0);
     ~GroupWdg();
 
@@ -27,12 +28,13 @@ private slots:
     void deleteChild();
     void editChild();
 private:
+//    QList<int> chcolwidths;
     Ui::GroupWdg *ui;
     Database* db;
     QSqlTableModel* groupModel;
     QSqlTableModel* childModel;
 
-    void inidChildPanel();
+    void initChildPanel();
     void initGroupPanel();
 
     void writeSettings();
