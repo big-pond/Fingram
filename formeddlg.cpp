@@ -14,7 +14,7 @@
 #include <QDebug>
 
 const QList<int> FormEdDlg::default_questcolwidthlst = QList<int>() << 0 << 620;
-const QList<int> FormEdDlg::default_answcolwidthlst = QList<int>() << 0 << 0 << 350 << 0 << 80;
+const QList<int> FormEdDlg::default_answcolwidthlst = QList<int>() << 0 << 0 << 300 << 80;
 
 FormEdDlg::FormEdDlg(const QSqlRecord& record, Database *db, QWidget *parent) :
     QDialog(parent),  ui(new Ui::FormEdDlg)
@@ -72,6 +72,7 @@ void FormEdDlg::setForm(const QSqlRecord &record)
 
     questQueryStr = QString("SELECT id, content FROM questions WHERE form_id=%1").arg(form_id);
     answrModel->setTable("answers");
+    qDebug() << "answrModel->columnCount()" << answrModel->columnCount();
     updateQuestionModel();
 }
 
@@ -160,7 +161,7 @@ void FormEdDlg::updateAnswerModel(int question_id)
     answrModel->setHeaderData(0, Qt::Horizontal, "ID");
     answrModel->setHeaderData(1, Qt::Horizontal, tr("Question ID"));
     answrModel->setHeaderData(2, Qt::Horizontal, tr("Content"));
-    answrModel->setHeaderData(3, Qt::Horizontal, tr("Correct"));
+    answrModel->setHeaderData(3, Qt::Horizontal, tr("Correct-1\nIncorrect-0"));
     for(int i=0; i<answrModel->columnCount(); i++)
     {
         ui->tvAnswer->setColumnWidth(i, answcolwidthlst[i]);
@@ -198,7 +199,7 @@ void FormEdDlg::writeSettings()
     {
         settings.setArrayIndex(i);
         int col_width = ui->tvAnswer->columnWidth(i);
-        if((i==2 || i==4) && col_width==0)
+        if((i==2 || i==3) && col_width==0)
             col_width = default_answcolwidthlst[i];
         settings.setValue("width", col_width);
     }

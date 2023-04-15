@@ -67,6 +67,8 @@ public:
     int getMaxPointQuestionnaire(int form_id);//Максимально возможное количество баллов по анкете
     double processingTest(int testing_id, QStandardItemModel* model);
 
+    QString getQuestionnaireText(const int id);
+
 
 signals:
 

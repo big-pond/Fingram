@@ -46,6 +46,7 @@ private:
     void initTestingModel();
     void updateActions();
     void setCurretFile(const QString &fname);
+    int findRow(int id);
 };
 
 #endif // MAINWINDOW_H

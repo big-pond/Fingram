@@ -6,6 +6,9 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 #include <QSettings>
+#include <QTextDocument>
+#include <QPrinter>
+#include <QPrintDialog>
 
 #include "database.h"
 #include "formeddlg.h"
@@ -22,6 +25,7 @@ FormsWdg::FormsWdg(Database* db, QWidget *parent)
     connect(ui->tbEdit, SIGNAL(clicked()), this, SLOT(editForm()));
     connect(ui->tbAdd, SIGNAL(clicked()), this, SLOT(addForm()));
     connect(ui->tbDel, SIGNAL(clicked()), this, SLOT(deleteForm()));
+    connect(ui->tbPrint, SIGNAL(clicked(bool)), this, SLOT(printForm()));
     readSettings();
 }
 
@@ -133,6 +137,32 @@ void FormsWdg::deleteForm()
 
 //    updateChildView();
     ui->tvForm->setFocus();
+}
+
+void FormsWdg::printForm()
+{
+    QModelIndex index = ui->tvForm->currentIndex();
+    if (!index.isValid())
+    {
+        QMessageBox::information(this, tr("Printing the questionnaire"), tr("Questionnaire not selected."));
+        return;
+    }
+    int id = formModel->data(index.sibling(index.row(),Form::Id)).toInt();
+    QString text = db->getQuestionnaireText(id);
+    qDebug() << text;
+    QTextDocument doc(text); // your text is here
+//    QPrinter printer;
+//    printer.setOutputFileName("<your_file_name_goes_here");
+//    printer.setOutputFormat(QPrinter::PdfFormat);
+//    doc.print(&printer);
+//    printer.newPage(); // this might not be necessary if you want just 1 page, I'm not sure
+
+
+    QPrintDialog printDialog(this);
+    if (printDialog.exec() == QDialog::Accepted) {
+        QPrinter* printer = printDialog.printer();
+        doc.print(printer);
+    }
 }
 
 void FormsWdg::initPanel()

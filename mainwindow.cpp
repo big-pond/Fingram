@@ -198,11 +198,8 @@ void MainWindow::initTestingModel()
     ui->tableView->setColumnHidden(2, true);
     ui->tableView->resizeColumnsToContents();
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
-
-//    connect(ui->tableView->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &,const QModelIndex &)),
-//            this, SLOT(updateChildView(const QModelIndex &,const QModelIndex &)));
-
 }
+
 void MainWindow::loadFormFromFile()
 {
     QString fname = QFileDialog::getOpenFileName(this,"", Def::formdir, "Text file (*.txt)");
@@ -242,8 +239,28 @@ void MainWindow::editForms()
 void MainWindow::createFormsForGroup()
 {
     CrGrFms* dlg = new CrGrFms(db);
-    dlg->exec();
+    if (dlg->exec()== QDialog::Accepted)
+    {
+        int id = db->getMaxId("testing");
+        initTestingModel();
+        int row = findRow(id); //Из-за сортировки ищем строку в tableView
+        ui->tableView->setCurrentIndex(testingModel->index(row, Form::Name));
+    }
     delete dlg;
+}
+
+int MainWindow::findRow(int id)
+{
+    int row = -1;
+    while (testingModel->canFetchMore())
+          testingModel->fetchMore();
+    for(int i=0; i<testingModel->rowCount(); i++)
+        if (testingModel->data(testingModel->index(i, 0)).toInt()==id)
+        {
+            row = i;
+            break;
+        }
+    return row;
 }
 
 void MainWindow::inputTestData()

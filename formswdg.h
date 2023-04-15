@@ -21,6 +21,7 @@ private slots:
     void addForm();
     void deleteForm();
     void editForm();
+    void printForm();
 
 private:
     Ui::FormsWdg *ui;

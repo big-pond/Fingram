@@ -183,7 +183,6 @@ void GroupWdg::editChild()
         dlg.setData(surname, name, date, note);
         if(dlg.exec()==QDialog::Accepted)
         {
-            qDebug() << surname << dlg.getSurname();
             if(QString::compare(surname, dlg.getSurname())!=0)
                 record.setValue(Child::Surname, dlg.getSurname());
             if(QString::compare(name, dlg.getName())!=0)

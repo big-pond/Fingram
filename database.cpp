@@ -594,18 +594,7 @@ double Database::processingTest(int testing_id, QStandardItemModel *model)
         return 0;
 
     int point_max = getMaxPointQuestionnaire(form_id);//Максимально возможное количество баллов по анкете
-//    //Максимально возможное количество баллов по анкете
-//    int point_max = 0;
-//    query.prepare("SELECT sum(answers.correct) FROM answers, questions WHERE answers.question_id = questions.id AND questions.form_id = ?");
-//    query.bindValue(0, form_id);
-//    query.exec();
-//    if(query.next())
-//    {
-//        point_max = query.value(0).toInt();
-//    }
     qDebug() << "point_max" << point_max;
-//    double lo_mi = 0.333333;
-//    double mi_hi = 0.666667;//низкий средний высокий
 
     QSqlQuery quChild(db);
     quChild.prepare("SELECT id, surname, name, db, note FROM childs WHERE group_id = ?");
@@ -644,18 +633,56 @@ double Database::processingTest(int testing_id, QStandardItemModel *model)
         model->setData(model->index(row, 4), point_sum); //количество баллов
         group_point_sum += point_sum;
         QString level = Def::level(point_max, point_sum);
-//        QString level = tr("low");
-//        double ratio = (double)(point_sum)/point_max;
-
-//        if (ratio>mi_hi)
-//            level = tr("high");
-//        else if ((ratio>=lo_mi)&&(ratio<=mi_hi))
-//            level = tr("middle");
         model->setData(model->index(row, 5), level); //уровень
     }
     int childCount = getChildCount(group_id);
     double average_score = (double) group_point_sum / (double) childCount;
     return average_score;
+}
+
+QString Database::getQuestionnaireText(const int id)
+{
+//    QString text(tr("<h3 style=\"text-align: center\">Questionnaire</h3>"));
+    QString text;
+    QString s;
+    QSqlQuery query(db);
+    query.prepare("SELECT name, note FROM forms WHERE(id = ?)");
+    query.bindValue(0, id);
+    query.exec();
+    if(query.next())
+    {
+        s = query.value("name").toString();
+    }
+    text += QString("<h3  align=\"center\">%1</h3>").arg(s);
+    query.prepare("SELECT id, content, imagedata FROM questions WHERE(form_id = ?)");
+    query.bindValue(0, id);
+    query.exec();
+    int qnum = 0;
+    while(query.next())
+    {
+        qnum++;
+        int qid = query.value("id").toInt();
+        s = query.value("content").toString();
+        text += tr("<p>Questing %1. <b>%2</b></p>").arg(qnum).arg(s);
+        QByteArray byte_array = query.value("imagedata").toByteArray();
+        if (!byte_array.isEmpty())
+        {
+            QPixmap pixmap = QPixmap();
+            pixmap.loadFromData(byte_array );
+        }
+        text += "<p>";
+        QSqlQuery aquery(db);
+        aquery.prepare("SELECT content FROM answers WHERE(question_id = ?)");
+        aquery.bindValue(0, qid);
+        aquery.exec();
+        while(aquery.next())
+        {
+            s = aquery.value("content").toString();
+            text += QString("%1<br>").arg(s);
+        }
+        text += "</p>";
+    }
+    return text;
 }
 
 QList<QStandardItem*>* Database::createStandartItemRow(int col_count)

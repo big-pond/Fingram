@@ -137,7 +137,6 @@ void QuestionEdDlg::loadImage()
             QPixmap pixmap = QPixmap();
             pixmap.loadFromData(imagedata );
             ui->lbImage->setPixmap(pixmap.scaled(ui->lbImage->size(), Qt::KeepAspectRatio));
-//            ui->lbImage->setPixmap(pixmap);
         }
     }
 }

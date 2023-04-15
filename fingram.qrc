@@ -18,5 +18,6 @@
         <file>resources/settings.png</file>
         <file>resources/sort.png</file>
         <file>resources/edittesting.png</file>
+        <file>resources/print.png</file>
     </qresource>
 </RCC>

@@ -55,11 +55,6 @@ void InputTestWdg::initAnswerPanel()
      //              0      1             2         3           4
      //childanswers (id, testing_id,   child_id, question_id, answer_id);
      childanswerModel->select();
-     qDebug() << "answerModel->rowCount()" << childanswerModel->rowCount();
-//     qDebug() <<answerModel->record(0);
-
-//     ui->tableView->setModel(childanswerModel);
-//     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
      QVBoxLayout *vbl = dynamic_cast<QVBoxLayout*>(ui->wgAnswersMain->layout());//new QVBoxLayout;
      wgAnswers = new AnswersWdg();
      vbl->insertWidget(-1, wgAnswers, 1);
