@@ -46,6 +46,9 @@ private:
 
     void selectChildren(int group_id);
     void selectQuestions(int form_id);
+
+    void writeSettings();
+    void readSettings();
 };
 
 #endif // INPUTTESTWDG_H

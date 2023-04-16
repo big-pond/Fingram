@@ -7,6 +7,7 @@
 
 class QStandardItemModel;
 class QStandardItem;
+class QTextDocument;
 
 struct Group {
 public:
@@ -68,6 +69,7 @@ public:
     double processingTest(int testing_id, QStandardItemModel* model);
 
     QString getQuestionnaireText(const int id);
+    void getQuestionnaireText(const int id, QTextDocument* doc);
 
 
 signals:

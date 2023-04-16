@@ -7,6 +7,9 @@
 #include <QStandardItemModel>
 #include <QProgressDialog>
 #include <QApplication>
+#include <QTextDocument>
+#include <QTextCursor>
+#include <QTextCharFormat>
 
 #include "def.h"
 
@@ -668,7 +671,7 @@ QString Database::getQuestionnaireText(const int id)
         if (!byte_array.isEmpty())
         {
             QPixmap pixmap = QPixmap();
-            pixmap.loadFromData(byte_array );
+            pixmap.loadFromData(byte_array);
         }
         text += "<p>";
         QSqlQuery aquery(db);
@@ -683,6 +686,75 @@ QString Database::getQuestionnaireText(const int id)
         text += "</p>";
     }
     return text;
+}
+
+void Database::getQuestionnaireText(const int id, QTextDocument *doc)
+{
+    QString s;
+    QTextCursor cursor(doc);
+    QSqlQuery query(db);
+    query.prepare("SELECT name, note FROM forms WHERE(id = ?)");
+    query.bindValue(0, id);
+    query.exec();
+    if(query.next())
+    {
+        s = query.value("name").toString();
+    }
+    int h = 12;
+    QFont hfont("Times", h+2, QFont::Bold);
+    QTextCharFormat headerFormat;
+    headerFormat.setFont(hfont);
+
+    QFont nfont("Times", h, QFont::Bold);
+    QTextCharFormat numqstFormat;
+    numqstFormat.setFont(nfont);
+
+    QFont qfont("Times", h, QFont::Normal);
+    QTextCharFormat questFormat;
+    questFormat.setFont(qfont);
+
+    QFont bfont("Times", h+6, QFont::Normal);
+    QTextCharFormat boxFormat;
+    boxFormat.setFont(bfont);
+
+    QTextImageFormat imgFormat;
+    imgFormat.setWidth(600);
+
+    cursor.insertText(QString("%1\n\n").arg(s), headerFormat);
+    query.prepare("SELECT id, content, imagedata FROM questions WHERE(form_id = ?)");
+    query.bindValue(0, id);
+    query.exec();
+    int qnum = 0;
+    while(query.next())
+    {
+        qnum++;
+        int qid = query.value("id").toInt();
+        s = query.value("content").toString();
+        cursor.insertText(tr("Questing %1. ").arg(qnum), numqstFormat);
+        cursor.insertText(QString("%1\n").arg(s), questFormat);
+        QByteArray byte_array = query.value("imagedata").toByteArray();
+        if (!byte_array.isEmpty())
+        {
+            QPixmap pixmap = QPixmap();
+            pixmap.loadFromData(byte_array);
+            if(pixmap.height()>200 || pixmap.width()>600)
+                cursor.insertImage(pixmap.scaled(600, 200, Qt::KeepAspectRatio).toImage());
+            else
+                cursor.insertImage(pixmap.toImage());
+            cursor.insertText("\n", questFormat);
+        }
+        QSqlQuery aquery(db);
+        aquery.prepare("SELECT content FROM answers WHERE(question_id = ?)");
+        aquery.bindValue(0, qid);
+        aquery.exec();
+        while(aquery.next())
+        {
+            s = aquery.value("content").toString();
+            cursor.insertText("  □  ", boxFormat);
+            cursor.insertText(QString("%1\n").arg(s), questFormat);
+        }
+        cursor.insertText("\n", questFormat);
+    }
 }
 
 QList<QStandardItem*>* Database::createStandartItemRow(int col_count)

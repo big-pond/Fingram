@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 #include <QSqlRelation>
 #include <QDataWidgetMapper>
+#include <QSettings>
 
 #include "database.h"
 #include "answerswdg.h"
@@ -27,10 +28,12 @@ InputTestWdg::InputTestWdg(Database *db, QWidget *parent) :
     ui->leQuestion->setVisible(false);
     connect(questionMapper, SIGNAL(currentIndexChanged(int)), SLOT(selectPictureAndAnswers(int)));
     initAnswerPanel();
+    readSettings();
 }
 
 InputTestWdg::~InputTestWdg()
 {
+    writeSettings();
     delete ui;
 }
 
@@ -103,7 +106,6 @@ void InputTestWdg::selectPictureAndAnswers(int mapper_index)
         QPixmap pixmap = QPixmap();
         pixmap.loadFromData(byte_array );
         ui->lbImage->setPixmap(pixmap.scaled(ui->lbImage->size(), Qt::KeepAspectRatio));
-//        ui->lbImage->setPixmap(pixmap);
     }
     else
     {
@@ -154,3 +156,20 @@ void InputTestWdg::selectQuestions(int form_id)
     connect(ui->leQuestion, SIGNAL(textChanged(QString)), this, SLOT(setQuestionText(QString)));
     questionMapper->toFirst();
 }
+
+void InputTestWdg::writeSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("InputTestWdg");
+    settings.setValue("geometry", saveGeometry());
+    settings.endGroup();
+}
+
+void InputTestWdg::readSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("InputTestWdg");
+    restoreGeometry(settings.value("geometry", geometry()).toByteArray());
+    settings.endGroup();
+}
+

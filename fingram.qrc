@@ -19,5 +19,6 @@
         <file>resources/sort.png</file>
         <file>resources/edittesting.png</file>
         <file>resources/print.png</file>
+        <file>resources/topdf.png</file>
     </qresource>
 </RCC>

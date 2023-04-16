@@ -40,7 +40,8 @@ SOURCES += \
     testprocwdg.cpp \
     formeddlg.cpp \
     questioneddlg.cpp \
-    groupeddlg.cpp
+    groupeddlg.cpp \
+    printformdlg.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -57,7 +58,8 @@ HEADERS += \
     testprocwdg.h \
     formeddlg.h \
     questioneddlg.h \
-    groupeddlg.h
+    groupeddlg.h \
+    printformdlg.h
 
 FORMS += \
         mainwindow.ui \
@@ -71,7 +73,8 @@ FORMS += \
     testprocwdg.ui \
     formeddlg.ui \
     questioneddlg.ui \
-    groupeddlg.ui
+    groupeddlg.ui \
+    printformdlg.ui
 
 RESOURCES += \
     fingram.qrc
