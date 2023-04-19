@@ -494,6 +494,36 @@ void Database::setAnswers(int form_id, QSqlRecord *question_record, const QByteA
     }
 }
 
+int Database::getTestingFormCount(int form_id)
+{
+    QSqlQuery query(db);
+    query.exec(QString("SELECT count() FROM testing WHERE form_id = %1").arg(form_id));
+    int count = 0;
+    if(query.next())
+        count = query.value(0).toInt();
+    return count;
+}
+
+int Database::getChildAnswerCount(int answer_id)
+{
+    QSqlQuery query(db);
+    query.exec(QString("SELECT count() FROM childanswers WHERE answer_id = %1").arg(answer_id));
+    int count = 0;
+    if(query.next())
+        count = query.value(0).toInt();
+    return count;
+}
+
+int Database::getChildQuestionCount(int question_id)
+{
+    QSqlQuery query(db);
+    query.exec(QString("SELECT count() FROM childanswers WHERE question_id = %1").arg(question_id));
+    int count = 0;
+    if(query.next())
+        count = query.value(0).toInt();
+    return count;
+}
+
 //Методы создания анкет для группы (внутри базы данных)
 void Database::createFormsForGroup(const QString &filename, int form_id, int group_id, const QDate& tstdate, const QString& note)
 {
@@ -688,7 +718,7 @@ QString Database::getQuestionnaireText(const int id)
     return text;
 }
 
-void Database::getQuestionnaireText(const int id, QTextDocument *doc)
+void Database::getQuestionnaireText(const int id, QTextDocument *doc, int h)
 {
     QString s;
     QTextCursor cursor(doc);
@@ -700,7 +730,6 @@ void Database::getQuestionnaireText(const int id, QTextDocument *doc)
     {
         s = query.value("name").toString();
     }
-    int h = 12;
     QFont hfont("Times", h+2, QFont::Bold);
     QTextCharFormat headerFormat;
     headerFormat.setFont(hfont);

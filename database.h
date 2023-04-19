@@ -64,12 +64,16 @@ public:
     void getAnswers(int id, QStandardItemModel* model);
     void setAnswers(int form_id, QSqlRecord* question_record, const QByteArray& imgdata, QStandardItemModel* model);
 
+    int getTestingFormCount(int form_id);
+    int getChildQuestionCount(int question_id);
+    int getChildAnswerCount(int answer_id);
+
     int getFormIdFromTesting(int id);
     int getMaxPointQuestionnaire(int form_id);//Максимально возможное количество баллов по анкете
     double processingTest(int testing_id, QStandardItemModel* model);
 
     QString getQuestionnaireText(const int id);
-    void getQuestionnaireText(const int id, QTextDocument* doc);
+    void getQuestionnaireText(const int id, QTextDocument* doc, int h=12);
 
 
 signals:

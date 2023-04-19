@@ -105,9 +105,20 @@ void FormsWdg::deleteForm()
     if (!index.isValid())
         return;
 
-    db->database().transaction();
+    db->database().transaction(); //CHECK REFERENCES to testing and childanswers tables!!!!!
     QSqlRecord record = formModel->record(index.row());
     int id = record.value("id").toInt();
+
+
+    int testing_form_count = db->getTestingFormCount(id);
+    if (testing_form_count>0)
+    {
+        QMessageBox::information(this, "", tr("The questionnaire cannot be deleted "
+                                              "because it has already been used in testing."));
+        //Анкета не может быть удалена так как он уже использовалась в тестировании.
+        return;
+    }
+
     int numQuests = 0;
 
     QSqlQuery query(QString("SELECT COUNT(*) FROM questions WHERE form_id = %1").arg(id),db->database());

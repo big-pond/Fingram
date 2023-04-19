@@ -19,11 +19,12 @@ public:
 private slots:
     void print();
     void toPdf();
-
+    void fontHeightChanged(int fontheight);
 private:
     Ui::PrintFormDlg *ui;
     Database *db;
-    void questionnairePreparation(int id);
+    int id;
+    void questionnairePreparation(int fontheight);
     void writeSettings();
     void readSettings();
 };

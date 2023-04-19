@@ -12,12 +12,13 @@ PrintFormDlg::PrintFormDlg(int id, Database *db, QWidget *parent) :
 {
     ui->setupUi(this);
     this->db = db;
+    this->id = id;
     ui->textEdit->setFocus();
     connect(ui->tbPrint, SIGNAL(clicked()), SLOT(print()));
     connect(ui->tbToPdf, SIGNAL(clicked()), SLOT(toPdf()));
-    questionnairePreparation(id);
+    connect(ui->sbFontHeight, SIGNAL(valueChanged(int)), SLOT(fontHeightChanged(int)));
     readSettings();
-
+    questionnairePreparation(ui->sbFontHeight->value());
 }
 
 PrintFormDlg::~PrintFormDlg()
@@ -50,10 +51,16 @@ void PrintFormDlg::toPdf()
     }
 }
 
-void PrintFormDlg::questionnairePreparation(int id)
+void PrintFormDlg::fontHeightChanged(int fontheight)
+{
+    ui->textEdit->document()->clear();
+    questionnairePreparation(fontheight);
+}
+
+void PrintFormDlg::questionnairePreparation(int fontheight)
 {
     QTextDocument* doc = ui->textEdit->document();
-    db->getQuestionnaireText(id, doc);
+    db->getQuestionnaireText(id, doc, fontheight);
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::Start);
     ui->textEdit->setTextCursor(cursor);
@@ -64,6 +71,7 @@ void PrintFormDlg::writeSettings()
     QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
     settings.beginGroup("PrintFormDlg");
     settings.setValue("geometry", saveGeometry());
+    settings.setValue("fontheight", ui->sbFontHeight->value());
     settings.endGroup();
 }
 
@@ -72,5 +80,6 @@ void PrintFormDlg::readSettings()
     QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
     settings.beginGroup("PrintFormDlg");
     restoreGeometry(settings.value("geometry", geometry()).toByteArray());
+    ui->sbFontHeight->setValue(settings.value("fontheight", ui->sbFontHeight->value()).toInt());
     settings.endGroup();
 }

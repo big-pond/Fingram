@@ -117,11 +117,21 @@ void FormEdDlg::editQuestion()
 
 void FormEdDlg::delQuestion()
 {
-    QModelIndex index = ui->tvQuestion->currentIndex();
+    QModelIndex index = ui->tvQuestion->currentIndex();//CHECK REFERENCES to childanswers table!!!!!
     if (index.isValid())
     {
         QSqlRecord record = questModel->record(index.row());
         int id = record.value(Question::Id).toInt();
+
+        int child_question_count = db->getChildQuestionCount(id);
+        if (child_question_count>0)
+        {
+            QMessageBox::information(this, "", tr("The question cannot be deleted "
+                                                  "because it has already been used in testing."));
+            //Вопрос не может быть удален так как он уже использовался в тестировании.
+            return;
+        }
+
         int count = db->isQuestionHasAnswers(id);
         QString msg = tr("Delete question?");
         if (count>0)

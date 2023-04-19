@@ -109,9 +109,19 @@ void QuestionEdDlg::addAnswer()
 
 void QuestionEdDlg::deleteAnswer()
 {
-    QModelIndex index = ui->tableView->currentIndex();
+    QModelIndex index = ui->tableView->currentIndex();  //CHECK REFERENCES to childanswers table!!!!!
     if (index.isValid())
     {
+        int id = model->data(index.sibling(index.row(),0), 0).toInt();
+        int child_answer_count = db->getChildAnswerCount(id);
+        if (child_answer_count>0)
+        {
+            QMessageBox::information(this, "", tr("The answer cannot be deleted "
+                                                  "because it has already been used in testing."));
+            //Ответ не может быть удален так как он уже использовался в тестировании.
+            return;
+        }
+
         if (QMessageBox::question(this, "", tr("Delete answer?"))==QMessageBox::Yes)
             model->removeRow(index.row());
     }
