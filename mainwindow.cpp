@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mainToolBar->addAction(ui->actionEditForms);
     ui->mainToolBar->addAction(ui->actionEditGroups);
     ui->mainToolBar->addSeparator();
+    ui->mainToolBar->addAction(ui->actionCreateFormsForGroup);
     ui->mainToolBar->addAction(ui->actionInputTestData);
     ui->mainToolBar->addAction(ui->actionProcessing);
     ui->mainToolBar->addSeparator();

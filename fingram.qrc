@@ -20,5 +20,6 @@
         <file>resources/edittesting.png</file>
         <file>resources/print.png</file>
         <file>resources/topdf.png</file>
+        <file>resources/crftesting.png</file>
     </qresource>
 </RCC>

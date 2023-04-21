@@ -73,10 +73,10 @@
     <property name="title">
      <string>Testing</string>
     </property>
+    <addaction name="actionCreateFormsForGroup"/>
+    <addaction name="separator"/>
     <addaction name="actionInputTestData"/>
     <addaction name="actionProcessing"/>
-    <addaction name="separator"/>
-    <addaction name="actionCreateFormsForGroup"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -186,6 +186,10 @@
    </property>
   </action>
   <action name="actionCreateFormsForGroup">
+   <property name="icon">
+    <iconset resource="fingram.qrc">
+     <normaloff>:/resources/crftesting.png</normaloff>:/resources/crftesting.png</iconset>
+   </property>
    <property name="text">
     <string>Сreate questionnaires for group</string>
    </property>
