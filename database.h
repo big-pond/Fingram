@@ -50,7 +50,7 @@ public:
     void loadFromFromFile(const QString& filename);
     void loadGroupFromFile(const QString& filename);
 
-    void createFormsForGroup(const QString& filename, int form_id, int group_id, const QDate &tstdate, const QString &note);
+    void createFormsForGroup(int form_id, int group_id, const QDate &tstdate, const QString &note);
 
     int testingsCount(int form_id, int group_id);
     int getMaxId(const QString& table_name);

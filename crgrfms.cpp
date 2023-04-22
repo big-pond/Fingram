@@ -31,8 +31,7 @@ CrGrFms::~CrGrFms()
 
 void CrGrFms::accept()
 {
-    db->createFormsForGroup(ui->leFolder->text(),
-                            ui->cbForm->currentData().toInt(),
+    db->createFormsForGroup(ui->cbForm->currentData().toInt(),
                             ui->cbGroup->currentData().toInt(),
                             ui->deDate->date(),
                             ui->leNote->text());

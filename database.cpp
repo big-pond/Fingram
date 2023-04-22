@@ -525,7 +525,7 @@ int Database::getChildQuestionCount(int question_id)
 }
 
 //Методы создания анкет для группы (внутри базы данных)
-void Database::createFormsForGroup(const QString &filename, int form_id, int group_id, const QDate& tstdate, const QString& note)
+void Database::createFormsForGroup(int form_id, int group_id, const QDate& tstdate, const QString& note)
 {
 //Проверка наличия уже подготовленной или отработанной анкеты для группы
     if(testingsCount(form_id, group_id)>0)
