@@ -2,6 +2,7 @@
 #include "ui_crgrfms.h"
 
 #include <QSqlQuery>
+#include <QSettings>
 
 #include "database.h"
 
@@ -21,11 +22,12 @@ CrGrFms::CrGrFms(Database *db, QWidget *parent) :
         ui->cbGroup->addItem(query.value("name").toString(), query.value("id"));
 
     ui->deDate->setDate(QDate::currentDate());
-
+    readSettings();
 }
 
 CrGrFms::~CrGrFms()
 {
+    writeSettings();
     delete ui;
 }
 
@@ -36,4 +38,20 @@ void CrGrFms::accept()
                             ui->deDate->date(),
                             ui->leNote->text());
     QDialog::accept();
+}
+
+void CrGrFms::writeSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("CrGrFms");
+    settings.setValue("geometry", saveGeometry());
+    settings.endGroup();
+}
+
+void CrGrFms::readSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("CrGrFms");
+    restoreGeometry(settings.value("geometry", geometry()).toByteArray());
+    settings.endGroup();
 }

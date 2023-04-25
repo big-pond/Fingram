@@ -38,7 +38,7 @@ void AnswersWdg::setModel(QSqlTableModel *model)
 void AnswersWdg::updateAnswerList()
 {
     int rowCount = model->rowCount();
-    qDebug() << rowCount;
+//    qDebug() << rowCount;
     int answerCount = 0;
     if(rowCount > 0)
     {

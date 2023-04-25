@@ -1,10 +1,12 @@
 #include "printformdlg.h"
 #include "ui_printformdlg.h"
 #include <QSettings>
-#include "database.h"
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QFileDialog>
+
+#include "def.h"
+#include "database.h"
 
 PrintFormDlg::PrintFormDlg(int id, Database *db, QWidget *parent) :
     QDialog(parent),
@@ -41,7 +43,7 @@ void PrintFormDlg::print()
 
 void PrintFormDlg::toPdf()
 {
-    QString fname = QFileDialog::getSaveFileName(this, tr("Save to PDF format file"), "", tr("PDF file (*.pdf)")); //Сохранить в файл формата PDF
+    QString fname = QFileDialog::getSaveFileName(this, tr("Save to PDF format file"), Def::formdir, tr("PDF file (*.pdf)")); //Сохранить в файл формата PDF
     if (!fname.isEmpty())
     {
         QPrinter printer;

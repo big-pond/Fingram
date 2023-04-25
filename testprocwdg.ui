@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Test result</string>
+   <string>Test results</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -50,20 +50,20 @@
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>54</height>
+       <height>64</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>54</height>
+       <height>64</height>
       </size>
      </property>
      <widget class="QLabel" name="lbAverageScore">
       <property name="geometry">
        <rect>
         <x>538</x>
-        <y>10</y>
+        <y>23</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -84,7 +84,7 @@ font-weight: bold;</string>
       <property name="geometry">
        <rect>
         <x>450</x>
-        <y>10</y>
+        <y>23</y>
         <width>82</width>
         <height>13</height>
        </rect>
@@ -100,7 +100,7 @@ font-weight: bold;</string>
       <property name="geometry">
        <rect>
         <x>450</x>
-        <y>30</y>
+        <y>42</y>
         <width>82</width>
         <height>13</height>
        </rect>
@@ -116,10 +116,161 @@ font-weight: bold;</string>
       <property name="geometry">
        <rect>
         <x>538</x>
-        <y>30</y>
+        <y>42</y>
         <width>71</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background : rgba(80,80,0,30);
+font-size: 12px; 
+font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>112</x>
+        <y>4</y>
+        <width>90</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>High level</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbHighPercent">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>4</y>
+        <width>58</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background : rgba(80,80,0,30);
+font-size: 12px; 
+font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbMiddlePercent">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>23</y>
+        <width>58</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background : rgba(80,80,0,30);
+font-size: 12px; 
+font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>112</x>
+        <y>23</y>
+        <width>90</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Middle level</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>112</x>
+        <y>42</y>
+        <width>90</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Low level</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbLowPercent">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>42</y>
+        <width>58</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background : rgba(80,80,0,30);
+font-size: 12px; 
+font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>4</y>
+        <width>112</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Maximum points</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbMaxPoints">
+      <property name="geometry">
+       <rect>
+        <x>538</x>
+        <y>4</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>The number of points that can be scored by answering correctly all questions of the questionnaire</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background : rgba(80,80,0,30);

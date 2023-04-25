@@ -64,6 +64,9 @@ public:
     void getAnswers(int id, QStandardItemModel* model);
     void setAnswers(int form_id, QSqlRecord* question_record, const QByteArray& imgdata, QStandardItemModel* model);
 
+    int getTestingGroupCount(int group_id);
+    int getTestingChildAnswerCount(int child_id);
+
     int getTestingFormCount(int form_id);
     int getChildQuestionCount(int question_id);
     int getChildAnswerCount(int answer_id);
@@ -71,6 +74,7 @@ public:
     int getFormIdFromTesting(int id);
     int getMaxPointQuestionnaire(int form_id);//Максимально возможное количество баллов по анкете
     double processingTest(int testing_id, QStandardItemModel* model);
+    void deleteTestResults(int testing_id);
 
     QString getQuestionnaireText(const int id);
     void getQuestionnaireText(const int id, QTextDocument* doc, int h=12);

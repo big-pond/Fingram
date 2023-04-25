@@ -71,7 +71,7 @@ bool Database::openDatabase(const QString &filename)
 void Database::closeDatabase()
 {
     db.close();
-    qDebug() << "close database";
+//    qDebug() << "close database";
 }
 
 void Database::loadFromFromFile(const QString &filename)
@@ -494,6 +494,26 @@ void Database::setAnswers(int form_id, QSqlRecord *question_record, const QByteA
     }
 }
 
+int Database::getTestingGroupCount(int group_id)
+{// testing (id, tstdate DATE, form_id, group_id, note
+    QSqlQuery query(db);
+    query.exec(QString("SELECT count() FROM testing WHERE group_id = %1").arg(group_id));
+    int count = 0;
+    if(query.next())
+        count = query.value(0).toInt();
+    return count;
+}
+
+int Database::getTestingChildAnswerCount(int child_id)
+{
+    QSqlQuery query(db);
+    query.exec(QString("SELECT count() FROM childanswers WHERE child_id = %1").arg(child_id));
+    int count = 0;
+    if(query.next())
+        count = query.value(0).toInt();
+    return count;
+}
+
 int Database::getTestingFormCount(int form_id)
 {
     QSqlQuery query(db);
@@ -627,7 +647,7 @@ double Database::processingTest(int testing_id, QStandardItemModel *model)
         return 0;
 
     int point_max = getMaxPointQuestionnaire(form_id);//Максимально возможное количество баллов по анкете
-    qDebug() << "point_max" << point_max;
+//    qDebug() << "point_max" << point_max;
 
     QSqlQuery quChild(db);
     quChild.prepare("SELECT id, surname, name, db, note FROM childs WHERE group_id = ?");
@@ -671,6 +691,16 @@ double Database::processingTest(int testing_id, QStandardItemModel *model)
     int childCount = getChildCount(group_id);
     double average_score = (double) group_point_sum / (double) childCount;
     return average_score;
+}
+
+void Database::deleteTestResults(int testing_id)
+{
+    QSqlQuery query(db);
+    db.transaction();
+    query.exec(QString("DELETE FROM childanswers WHERE testing_id = %1").arg(testing_id));
+    query.exec(QString("DELETE FROM testing WHERE id = %1").arg(testing_id));
+    db.commit();
+
 }
 
 QString Database::getQuestionnaireText(const int id)

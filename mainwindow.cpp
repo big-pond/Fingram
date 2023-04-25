@@ -71,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionInputTestData, SIGNAL(triggered()), SLOT(inputTestData()));
     connect(ui->actionProcessing, SIGNAL(triggered()), SLOT(testProcessing()));
+    connect(ui->actionDeleteTesting, SIGNAL(triggered()), SLOT(deleteTestResults()));
 
     connect(ui->actionHelp, SIGNAL(triggered()), SLOT(help()));
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
@@ -186,10 +187,10 @@ void MainWindow::initTestingModel()
                          "FROM testing, groups, forms WHERE "
                          "testing.group_id=groups.id AND testing.form_id=forms.id "
                          "ORDER BY groups.name, testing.tstdate",db->database());
-    testingModel->setHeaderData(3, Qt::Horizontal,"Дата теста");
-    testingModel->setHeaderData(4, Qt::Horizontal, "Группа");
-    testingModel->setHeaderData(5 ,Qt::Horizontal, "Тест");
-    testingModel->setHeaderData(6, Qt::Horizontal, "Примечание");
+    testingModel->setHeaderData(3, Qt::Horizontal,tr("Test date"));
+    testingModel->setHeaderData(4, Qt::Horizontal, tr("Group"));
+    testingModel->setHeaderData(5 ,Qt::Horizontal, tr("Questionnaire"));
+    testingModel->setHeaderData(6, Qt::Horizontal, tr("Note"));
 
     ui->tableView->setModel(testingModel);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -301,7 +302,23 @@ void MainWindow::testProcessing()
     }
     else
         QMessageBox::information(this, "", tr("The test record is not selected."));
+}
 
+void MainWindow::deleteTestResults()
+{
+    QModelIndex index = ui->tableView->currentIndex();
+    if (index.isValid())
+    {
+        if (QMessageBox::question(this, "", tr("Delete selected test results?"))==QMessageBox::No)
+            return;
+        QSqlRecord record = testingModel->record(index.row());
+        int id = record.value(0).toInt();
+        db->deleteTestResults(id);
+        initTestingModel();
+        ui->tableView->setCurrentIndex(testingModel->index(index.row(), 1));
+    }
+    else
+        QMessageBox::information(this, "", tr("The test record is not selected."));
 }
 
 void MainWindow::updateActions()

@@ -22,6 +22,8 @@ private slots:
 
 private:
     Ui::SettingDlg *ui;
+    void writeSettings();
+    void readSettings();
 };
 
 #endif // SETTINGDLG_H

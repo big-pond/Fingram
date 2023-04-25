@@ -93,15 +93,25 @@ void GroupWdg::editGroup()
     }
 }
 
-void GroupWdg::deleteGroup()
+void GroupWdg::deleteGroup()//ПРОВЕРКА!!!!
 {
     QModelIndex index = ui->tvGroup->currentIndex();
     if (!index.isValid())
         return;
 
-    db->database().transaction();
     QSqlRecord record = groupModel->record(index.row());
     int id = record.value(Group::Id).toInt();
+
+    int group_count = db->getTestingGroupCount(id);
+    if (group_count>0)
+    {
+        QMessageBox::information(this, "", tr("The group cannot be deleted because "
+                                              "it has already participated in testing."));
+        //Группа не может быть удалена так как она уже участвовала в тестировании.
+        return;
+    }
+
+    db->database().transaction();
     int numChilds = 0;
 
     QSqlQuery query(QString("SELECT COUNT(*) FROM childs WHERE group_id = %1").arg(id), db->database());
@@ -154,10 +164,19 @@ void GroupWdg::deleteChild()
     QModelIndex index = ui->tvChild->currentIndex();
     if (!index.isValid())
         return;
+    int child_id = childModel->record(index.row()).value(Child::Id).toInt();
+    int child_count = db->getTestingChildAnswerCount(child_id);
+    if (child_count>0)
+    {
+        QMessageBox::information(this, "", tr("The child cannot be deleted because "
+                                              "he has already participated in testing."));
+        //ребенок не может быть удален так как он уже участвовал в тестировании.
+        return;
+    }
 
     QString sname = childModel->record(index.row()).value(Child::Surname).toString();
-    int r = QMessageBox::warning(this, tr("Deleting data about a child"),
-                tr("Delete record %1 from the group?").arg(sname), QMessageBox::Yes | QMessageBox::No);
+    int r = QMessageBox::question(this, tr("Deleting data about a child"),
+                tr("Delete record %1 from the group?").arg(sname));
     if (r == QMessageBox::No)
         return;
 
@@ -166,7 +185,6 @@ void GroupWdg::deleteChild()
 
     updateChildView();
     ui->tvChild->setFocus();
-
 }
 
 void GroupWdg::editChild()

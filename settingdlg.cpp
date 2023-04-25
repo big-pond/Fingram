@@ -2,6 +2,7 @@
 #include "ui_settingdlg.h"
 
 #include <QFileDialog>
+#include <QSettings>
 
 #include "def.h"
 
@@ -14,10 +15,12 @@ SettingDlg::SettingDlg(QWidget *parent) :
     connect(ui->tbSelectDbFileName, SIGNAL(clicked(bool)), SLOT(selectDbFileName()));
     ui->leFormDir->setText(Def::formdir);
     ui->leDbFileName->setText(Def::dbfilename);
+    readSettings();
 }
 
 SettingDlg::~SettingDlg()
 {
+    writeSettings();
     delete ui;
 }
 
@@ -39,4 +42,20 @@ void SettingDlg::selectDbFileName()
     QString fname = QFileDialog::getOpenFileName(this,"", Def::dbfilename);
     if(!fname.isEmpty())
         ui->leDbFileName->setText(fname);
+}
+
+void SettingDlg::writeSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("SettingDlg");
+    settings.setValue("geometry", saveGeometry());
+    settings.endGroup();
+}
+
+void SettingDlg::readSettings()
+{
+    QSettings settings(QString("%1.ini").arg(QApplication::applicationName()), QSettings::IniFormat);
+    settings.beginGroup("SettingDlg");
+    restoreGeometry(settings.value("geometry", geometry()).toByteArray());
+    settings.endGroup();
 }

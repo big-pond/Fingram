@@ -28,6 +28,8 @@ private:
     Database* db;
     int testing_id;
     QStandardItemModel* model;
+    void writeSettings();
+    void readSettings();
 };
 
 #endif // TESTPROCWDG_H

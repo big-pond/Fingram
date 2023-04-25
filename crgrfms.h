@@ -23,6 +23,8 @@ public slots:
 private:
     Ui::CrGrFms *ui;
     Database* db;
+    void writeSettings();
+    void readSettings();
 };
 
 #endif // CRGRFMS_H

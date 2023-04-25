@@ -4,6 +4,8 @@
 #include <QString>
 #include <QStringList>
 
+class QStandardItemModel;
+
 class Def
 {
 public:
@@ -23,6 +25,7 @@ public:
     static QString languageName(int i);
     static QString languageSuffix(int i);
     static QString level(const double& point_max, const double& point_sum);
+    static QList<double> levelPercent(QStandardItemModel* model, const double& point_max);
     static int languageCount();
 };
 

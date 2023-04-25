@@ -72,7 +72,7 @@ void FormEdDlg::setForm(const QSqlRecord &record)
 
     questQueryStr = QString("SELECT id, content FROM questions WHERE form_id=%1").arg(form_id);
     answrModel->setTable("answers");
-    qDebug() << "answrModel->columnCount()" << answrModel->columnCount();
+//    qDebug() << "answrModel->columnCount()" << answrModel->columnCount();
     updateQuestionModel();
 }
 
@@ -117,7 +117,7 @@ void FormEdDlg::editQuestion()
 
 void FormEdDlg::delQuestion()
 {
-    QModelIndex index = ui->tvQuestion->currentIndex();//CHECK REFERENCES to childanswers table!!!!!
+    QModelIndex index = ui->tvQuestion->currentIndex();
     if (index.isValid())
     {
         QSqlRecord record = questModel->record(index.row());

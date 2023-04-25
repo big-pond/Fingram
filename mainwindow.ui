@@ -74,9 +74,10 @@
      <string>Testing</string>
     </property>
     <addaction name="actionCreateFormsForGroup"/>
-    <addaction name="separator"/>
     <addaction name="actionInputTestData"/>
     <addaction name="actionProcessing"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteTesting"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -201,6 +202,15 @@
    </property>
    <property name="text">
     <string>Test result processing</string>
+   </property>
+  </action>
+  <action name="actionDeleteTesting">
+   <property name="icon">
+    <iconset resource="fingram.qrc">
+     <normaloff>:/resources/delete.png</normaloff>:/resources/delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete test results</string>
    </property>
   </action>
  </widget>

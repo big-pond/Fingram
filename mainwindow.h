@@ -31,6 +31,7 @@ private slots:
     void createFormsForGroup();
     void inputTestData();
     void testProcessing();
+    void deleteTestResults();
     void help();
     void about();
     void aboutQt();
